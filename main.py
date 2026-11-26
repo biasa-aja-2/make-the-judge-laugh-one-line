@@ -12,6 +12,9 @@ JOKE = "I asked the barista for something strong, so she handed me her resignati
 
 
 def main():
+    # Gate: /output/entry.txt must hold UTF-8 text of 1 to 200 chars.
+    if not (1 <= len(JOKE) <= 200) or "\n" in JOKE or not JOKE.strip():
+        raise ValueError("joke violates the competition gate")
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
